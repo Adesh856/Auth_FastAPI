@@ -16,7 +16,7 @@ db_name = os.getenv("DB_NAME")
 # Define the database URL
 SQLALCHEMY_DATABASE_URL = f"mysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 
-print(SQLALCHEMY_DATABASE_URL,"================>")
+print(SQLALCHEMY_DATABASE_URL,"================>DB")
 #Create the database engine
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
@@ -28,7 +28,6 @@ SessionLocal = sessionmaker(autocommit=False,autoflush=False,bind=engine)
 Base = declarative_base()
 
 
-
 #Dependency
 def get_db():
     """
@@ -37,5 +36,6 @@ def get_db():
     db=SessionLocal()
     try:
         yield db
+        print("Database connected successfully")
     finally:
         db.close()  

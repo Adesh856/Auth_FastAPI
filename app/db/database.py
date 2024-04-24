@@ -10,7 +10,7 @@ db_port = os.getenv("DB_PORT")
 db_user = os.getenv("DB_USER")
 db_password = os.getenv("DB_PASSWORD")
 db_name = os.getenv("DB_NAME")
-
+db_ssl = os.getenv("DB_SSL_MODE")
 
 
 # Define the database URL

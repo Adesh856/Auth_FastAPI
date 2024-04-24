@@ -21,9 +21,10 @@ jobs:
           python-version: "3.x"
       - name: Install dependencies
         run: |
+          python -m venv venv
+          source venv/bin/activate
           python -m pip install --upgrade pip
-          venv/Scripts/activate
-          pip install install -r requirements.txt
+          python -m pip install -r requirements.txt
       - name: Running app
         run: |
           uvicorn app.main:app --reload

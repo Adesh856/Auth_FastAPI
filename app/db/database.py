@@ -12,9 +12,9 @@ db_password = os.getenv("DB_PASSWORD")
 db_name = os.getenv("DB_NAME")
 db_ssl = os.getenv("DB_SSL_MODE")
 
-
+ngrok = "https://26d2-43-228-229-22.ngrok-free.app"
 # Define the database URL
-SQLALCHEMY_DATABASE_URL = f"mysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+SQLALCHEMY_DATABASE_URL = f"mysql://{db_user}:{db_password}@26d2-43-228-229-22.ngrok-free/{db_name}"
 
 print(SQLALCHEMY_DATABASE_URL,"================>DB")
 #Create the database engine

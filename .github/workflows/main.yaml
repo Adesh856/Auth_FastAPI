@@ -7,24 +7,27 @@ on:
   pull_request:
     branches:
       - features-branch
+
 jobs:
   build-deploy:
     name: Build and Deploy FastAPI App
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2 #for checking repository
-      - name: Set up Python
+        uses: actions/checkout@v2
 
+      - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: "3.x"
-      - name: Install dependencies
+
+      - name: Install dependencies and run FastAPI application
         run: |
-          python -m venv venv
-          source venv/bin/activate
+          cd $GITHUB_WORKSPACE  # Change directory to the repository root
+          python -m venv venv    # Create a virtual environment
+          source venv/bin/activate  # Activate the virtual environment (Linux/macOS)
+          # For Windows, use: .\venv\Scripts\Activate
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
-      - name: Running app
-        run: |
-          uvicorn app.main:app --reload
+          uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
